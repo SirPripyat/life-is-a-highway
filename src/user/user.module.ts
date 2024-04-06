@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { UserController } from './user.controller';
 import { UsersRepository } from './repositorys/user.repository';
 import { UserService } from './user.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
+import { LoggerMiddleware } from '../commons/logger.middleware';
 
 @Module({
   imports: [
@@ -13,4 +14,8 @@ import { User, UserSchema } from './schemas/user.schema';
   exports: [UserService],
   controllers: [UserController],
 })
-export class UserModule {}
+export class UserModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('cats');
+  }
+}

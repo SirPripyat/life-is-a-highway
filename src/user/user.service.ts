@@ -18,6 +18,10 @@ export class UserService {
     return await this.userModel.create(createUserDto);
   }
 
+  public async findAll() {
+    return this.userModel.find();
+  }
+
   private async generatePassword(createUserDto: CreateUserDto) {
     const userPasswordService = new UserPasswordService();
 
