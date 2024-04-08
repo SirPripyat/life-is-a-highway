@@ -1,0 +1,3 @@
+Média de requests: 65.200,00 - 100,00%;
+Média de requests 200: 67.181,60 - 99,75%;
+Média de requests erro: 157,10 - 0,24%;
